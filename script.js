@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const questionText = document.querySelector(".question")
 
-    noButton.addEventListener("mouseover", function () {
+    function moveButton() {
         const maxX = window.innerWidth - noButton.clientWidth;
         const maxY = window.innerHeight - noButton.clientHeight;
         
@@ -12,6 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         noButton.style.left = `${randomX}px`;
         noButton.style.top = `${randomY}px`;
+    }
+
+    // Move the "No" button when hovered (for desktop)
+    noButton.addEventListener("mouseover", moveButton);
+    
+    //for mobile
+    noButton.addEventListener("touchstart", function (event) {
+        event.preventDefault(); // Prevents unwanted touch behaviors (like scrolling)
+        moveButton();
     });
 
     function showConfetti() {
